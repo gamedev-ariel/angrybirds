@@ -22,11 +22,13 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        currentLevelIndex++;
-        if (currentLevelIndex < SceneManager.sceneCountInBuildSettings)
+        int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
+
+        if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
         {
-            Debug.Log(currentLevelIndex.ToString());
-            SceneManager.LoadScene(currentLevelIndex);
+            Debug.Log("Loading next scene: " + nextLevelIndex);
+            SceneManager.LoadScene(nextLevelIndex);
+            currentLevelIndex = nextLevelIndex;
         }
         else
         {
